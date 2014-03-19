@@ -20,4 +20,23 @@ class HomeController extends BaseController {
 		return View::make('hello');
 	}
 
+	public function showMap()
+	{
+		return View::make('map');
+	}
+
+	public function getAsset($filename) {
+		$path = 'app/assets/' . $filename;
+		$ext = pathinfo($path, PATHINFO_EXTENSION);
+		$response = Response::make(File::get($path), 200);
+		if ($ext == 'js') {
+			$mime = 'text/javascript';
+		} elseif ($ext == 'css') {
+			$mime = 'text/css';
+		}
+		$response->header('content-type', $mime);
+		return $response;
+	}
+
 }
+

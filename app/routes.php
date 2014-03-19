@@ -15,3 +15,7 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('map', 'HomeController@showMap');
+
+Route::get('assets/{filename}', 'HomeController@getAsset');
